@@ -1,0 +1,8 @@
+snscrape
+beautifulsoup4
+requests
+openai
+python-dotenv
+PyYAML
+pandas
+tqdm
