@@ -89,3 +89,9 @@ pip install tweepy pandas
   The script will generate:
 	-	solana_tweets_analysis.csv — a CSV file with the tweet data and analysis.
 	-	solana_tweets_analysis.json — a JSON file with the same information.
+
+## Author’s Note
+
+I initially attempted to use snscrape to gather data from Twitter. However, Twitter rejected the requests, which prevented the script from working as expected. To help diagnose this issue, I’ve included a test script (src/test.py) along with a screenshot of the error log for reference.
+
+![Screenshot of error log]('../error.png')
