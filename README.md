@@ -56,8 +56,8 @@ This project fetches recent tweets about Solana, analyzes each tweet for sentime
 Install the required packages using pip:
 
 ```bash
-pip install tweepy pandas 
-
+pip install tweepy pandas
+```
 ## Setup
 
 1. **Clone or Download the Project:**
@@ -84,7 +84,7 @@ pip install tweepy pandas
    ```bash
    python main.py
 
-##	Output Files:
+## Output Files:
 	-	The script will generate:
 	-	solana_tweets_analysis.csv — a CSV file with the tweet data and analysis.
 	-	solana_tweets_analysis.json — a JSON file with the same information.
