@@ -6,14 +6,18 @@ import re
 import traceback
 import json
 from typing import Dict, List, Any
+import yaml 
+
+with open("config.yaml", 'r') as f:
+    config = yaml.safe_load(f)
 
 # Hugging Face Open API details
 HUGGINGFACE_API_URL = "https://api-inference.huggingface.co/models/cardiffnlp/twitter-roberta-base-sentiment-latest"
 
 # Twitter API credentials (replace these!)
-consumer_key = "nk4WRAnq8pqXonhUaheZO70ac"    
-consumer_secret = "jec29ljDq6n6VHoeD8yMmCwiqOCIy5oxIH06rzq1xpGDKEz7YF"
-bearer_token = "AAAAAAAAAAAAAAAAAAAAAJgN0QEAAAAA2uMlcKJrVC07WYNBjfMuSdBI3fo%3DehtyJLpBup75s8YojnH2km25MOnJprNhP9Vy1c68Y0MVgMZvjn"
+consumer_key = config['Twitter']['key']    
+consumer_secret = config['Twitter']['secret']
+bearer_token = config['Twitter']['token']
 
 client = tweepy.Client(bearer_token=bearer_token)
 
@@ -24,7 +28,8 @@ def scrape_tweets(query: str, max_tweets=100):
 
     for tweet in tweepy.Paginator(client.search_recent_tweets, 
                                   query=query,
-                                  tweet_fields=['created_at', 'author_id', 'public_metrics'],
+                                  start_time=seven_days_ago.isoformat(),
+                                  tweet_fields=['created_at','author_id', 'public_metrics'],
                                   max_results=100).flatten(limit=max_tweets):
         tweets_data.append({
             "id": tweet.id,
@@ -70,7 +75,7 @@ def evaluate_tweet_hf(content: str) -> Dict[str, Any]:
         return {"sentiment": "unknown", "risk_score": 0, "relevance": False, "categories": []}
 
 def main():
-    tweets = scrape_tweets("(Solana OR #Solana) lang:en -is:retweet", max_tweets=5)
+    tweets = scrape_tweets("(Solana OR #Solana) lang:en -is:retweet", max_tweets=1)
 
     if not tweets:
         print("No tweets were scraped. Exiting.")

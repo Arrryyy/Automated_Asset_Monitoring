@@ -6,3 +6,5 @@ python-dotenv
 PyYAML
 pandas
 tqdm
+tweepy
+pyyaml
