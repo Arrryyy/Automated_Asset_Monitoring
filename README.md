@@ -56,4 +56,35 @@ This project fetches recent tweets about Solana, analyzes each tweet for sentime
 Install the required packages using pip:
 
 ```bash
-pip install tweepy pandas requests
+pip install tweepy pandas 
+
+## Setup
+
+1. **Clone or Download the Project:**
+   - Place the `main.py` script in your working directory.
+
+2. **Configure API Credentials:**
+   - Open `main.py` and replace the placeholder values for the Twitter API credentials:
+     - `consumer_key`
+     - `consumer_secret`
+     - `bearer_token`
+   - The Hugging Face API URL is preset to:
+     ```
+     https://api-inference.huggingface.co/models/cardiffnlp/twitter-roberta-base-sentiment-latest
+     ```
+   - **Important:** Ensure that sensitive files (such as `config.yaml` if used) are not pushed to GitHub by adding them to your `.gitignore`.
+
+## How to Run the Code
+
+1. **Activate your Python Environment:**
+   - Make sure you have activated the correct Python environment (e.g., via conda or virtualenv).
+
+2. **Run the Script:**
+
+   ```bash
+   python main.py
+
+##	Output Files:
+	-	The script will generate:
+	-	solana_tweets_analysis.csv — a CSV file with the tweet data and analysis.
+	-	solana_tweets_analysis.json — a JSON file with the same information.
